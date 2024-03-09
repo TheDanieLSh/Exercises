@@ -1,3 +1,5 @@
+'use strict'
+
 const axios = require('axios');
 const fs = require('fs');
 const jid = require('./json-image-downloader');
