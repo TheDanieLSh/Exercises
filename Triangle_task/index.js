@@ -1,26 +1,46 @@
 'use strict'
 
 function triangle(floors) {
-    const outputIndex = [];
+    const outputIndexBigToLittle = [];
     for (let i = floors; i >= 0; i--) {
-        outputIndex.push(1 + 2 * i);
+        outputIndexBigToLittle.push(1 + 2 * i);
     }
-    outputIndex.reverse();
-    function output(count) {
-        let result = '';
+    const outputIndexLittleToBig = [...outputIndexBigToLittle].reverse();
+    
+    const result = {};
+
+    function output(count, fl, side) {
         const spacesAmout  =  ((1 + 2 * floors) - count) / 2;
+        let stars = ''
         let spaces = '';
         for (let i = 0; i < count; i++) {
-            result += '*';
+            stars += '*';
         }
         for (let i = 0; i < spacesAmout; i++) {
             spaces += ' ';
         }
-        console.log(spaces + result);
+        if (!Array.isArray(result[fl])) {
+            result[fl] = [];
+        }
+        if (!Array.isArray(result[fl][side])) {
+            result[fl][side] = [];
+        }
+        if (side == 'left') {
+            result[fl][side].push(spaces + stars);
+        }
+        if (side == 'right') {
+            result[fl][side].push(stars + spaces);
+        }
     }
-    outputIndex.forEach(el => {
-        output(el);
+    outputIndexLittleToBig.forEach((el, i) => {
+        output(el, i, 'left');
     });
+    outputIndexBigToLittle.forEach((el, i) => {
+        output(el, i, 'right');
+    })
+    Object.values(result).forEach(el => {
+        console.log(el['left'] + ' ' + el['right']);
+    })
 }
 
 triangle(5);
