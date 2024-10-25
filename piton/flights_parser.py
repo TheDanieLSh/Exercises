@@ -17,6 +17,6 @@ for flight in flights:
             result['arrAir'] = segment['arrivalAirport']['caption']
             result['arrCity'] = segment['arrivalCity']['caption']
 
-print(json.dumps(result, indent=1))
+print(json.dumps(result, indent = 1))
 
 # print(flights[0]['flight']['legs'][0]['segments'][0]['arrivalCity'])

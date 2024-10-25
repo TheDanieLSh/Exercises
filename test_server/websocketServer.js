@@ -12,8 +12,6 @@ const socket = io(server);
 socket.on('connection', sock => {
     console.log('A Client connected');
 
-    console.log(sock);
-
     sock.on('request', data => {
         console.log('Request received:', data);
 
